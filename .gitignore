@@ -1,0 +1,8 @@
+/vendor/
+/composer.lock
+/demo/temp/*
+/src/config.json
+/src/view_token
+.idea
+!.gitignore
+!.gitkeep
