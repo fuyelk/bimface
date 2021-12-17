@@ -57,6 +57,7 @@ class Api
 
         self::$APP_KEY = $config['app_key'];
         self::$APP_SECRET = $config['app_secret'];
+        self::$ACCESS_TOKEN = $config['access_token'];
 
         // 检查是否需要刷新AccessToken
         if (empty($config['access_token']) ||
@@ -65,7 +66,6 @@ class Api
         {
             $this->refreshAccessToken();
         }
-        self::$ACCESS_TOKEN = $config['access_token'];
     }
 
     /**
