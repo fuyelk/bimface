@@ -65,6 +65,7 @@ class Api
         {
             $this->refreshAccessToken();
         }
+        self::$ACCESS_TOKEN = $config['access_token'];
     }
 
     /**
@@ -91,7 +92,7 @@ class Api
         // 更新配置
         $config = self::getCofig();
         $config['access_token'] = $res['data']['token'];
-        $config['access_token_expire_time'] = $res['data']['expireTime'];
+        $config['access_token_expire_time'] = strtotime($res['data']['expireTime']);
         self::setConfig($config);
 
         self::$ACCESS_TOKEN = $config['access_token'];

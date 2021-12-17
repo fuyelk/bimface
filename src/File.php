@@ -288,6 +288,19 @@ class File extends Api
                 'toBimtiles' => true
             ]
         ];
-        return $this->http_request($url, 'PUT', $data,1);
+        return $this->http_request($url, 'PUT', $data, 1);
+    }
+
+    /**
+     * 获取文件转换状态
+     * @param string $fileId 文件ID
+     * @return array|bool|string
+     * @throws BimfaceException
+     * @author fuyelk <fuyelk@fuyelk.com>
+     */
+    public function getTranslateStatus($fileId)
+    {
+        $url = 'https://api.bimface.com/translate?fileId=' . $fileId;
+        return $this->http_request($url, 'GET', [], 1);
     }
 }
