@@ -75,6 +75,9 @@ class Api
      */
     private function refreshAccessToken()
     {
+        // 刷新前清空ACCESS_TOKEN缓存
+        self::$ACCESS_TOKEN = "";
+
         $url = 'https://api.bimface.com/oauth2/token';
         $Authorization = sprintf('Authorization:Basic %s', base64_encode(self::$APP_KEY . ':' . self::$APP_SECRET));
         $res = $this->http_request($url, 'POST', [], 1, [$Authorization]);
