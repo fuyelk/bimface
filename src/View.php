@@ -25,7 +25,7 @@ class View extends Api
     public function __construct()
     {
         parent::__construct();
-        self::$VIEW_TOKEN = self::getCofig('', self::$TOKEN_PATH) ?: [];
+        self::$VIEW_TOKEN = self::getConfig('', self::$TOKEN_PATH) ?: [];
     }
 
     /**
@@ -38,7 +38,7 @@ class View extends Api
      * @throws BimfaceException
      * @author fuyelk <fuyelk@fuyelk.com>
      */
-    public function getViewToken($fileId = '', $compareId = '', $integrateId = '', $sceneId = '', $submodelId = '')
+    public function getViewToken(string $fileId = '', string $compareId = '', string $integrateId = '', string $sceneId = '', string $submodelId = '')
     {
         $query = [];
 
@@ -74,7 +74,7 @@ class View extends Api
 
         // 调接口获取
         $url = 'https://api.bimface.com/view/token?' . http_build_query($query);
-        $res = $this->http_request($url);
+        $res = $this->httpRequest($url);
 
         //{
         //  "code" : "success",

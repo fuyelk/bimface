@@ -14,17 +14,17 @@ class File extends Api
 {
     /**
      * 获取文件列表
-     * @param string $startTime 起始日期，格式为 yyyy-MM-dd
-     * @param string $endTime 截止日期，格式为 yyyy-MM-dd
-     * @param int $offset 查询结果偏移，从查询结果的第offset条开始返回数据
-     * @param int $rows 查询结果数，默认为100，最大500
-     * @param string $status 文件状态[uploading:上传中,success:成功,failure:失败的]
-     * @param string $suffix 文件后缀
+     * @param string $startTime [起始日期，格式为 yyyy-MM-dd]
+     * @param string $endTime [截止日期，格式为 yyyy-MM-dd]
+     * @param int $offset [查询结果偏移，从查询结果的第offset条开始返回数据]
+     * @param int $rows [查询结果数，默认为100，最大500]
+     * @param string $status [文件状态,uploading:上传中,success:成功,failure:失败的]
+     * @param string $suffix [文件后缀]
      * @return array
      * @throws BimfaceException
      * @author fuyelk <fuyelk@fuyelk.com>
      */
-    public function getFileList($startTime = '', $endTime = '', $offset = 0, $rows = 100, $status = '', $suffix = '')
+    public function getFileList(string $startTime = '', string $endTime = '', int $offset = 0, int $rows = 100, string $status = '', string $suffix = '')
     {
         $query = [];
         if ($startTime) {
@@ -47,7 +47,7 @@ class File extends Api
         }
 
         $url = 'https://file.bimface.com/files?' . http_build_query($query);
-        return $this->http_request($url);
+        return $this->httpRequest($url);
 
         //{
         //  "code" : "success",
@@ -71,10 +71,10 @@ class File extends Api
      * @throws BimfaceException
      * @author fuyelk <fuyelk@fuyelk.com>
      */
-    public function getFileInfo($fileId)
+    public function getFileInfo(string $fileId)
     {
         $url = 'https://file.bimface.com/files/' . $fileId;
-        return $this->http_request($url);
+        return $this->httpRequest($url);
 
         //{
         //  "code" : "success",
@@ -98,10 +98,10 @@ class File extends Api
      * @throws BimfaceException
      * @author fuyelk <fuyelk@fuyelk.com>
      */
-    public function getFileUploadStatus($fileId)
+    public function getFileUploadStatus(string $fileId)
     {
         $url = "https://file.bimface.com/files/{$fileId}/uploadStatus";
-        return $this->http_request($url);
+        return $this->httpRequest($url);
 
         //{
         //  "code" : "success",
@@ -124,7 +124,7 @@ class File extends Api
     public function getSupport()
     {
         $url = 'https://file.bimface.com/support';
-        return $this->http_request($url);
+        return $this->httpRequest($url);
 
         //{
         //  "code" : "success",
@@ -139,12 +139,12 @@ class File extends Api
     /**
      * 源文件下载
      * @param string $fileId 文件ID
-     * @param string $fileName 下载文件名
+     * @param string $fileName [下载文件名]
      * @return string
      * @throws BimfaceException
      * @author fuyelk <fuyelk@fuyelk.com>
      */
-    public function download($fileId, $fileName = '')
+    public function download(string $fileId, string $fileName = '')
     {
         $query['fileId'] = $fileId;
 
@@ -152,7 +152,7 @@ class File extends Api
             $query['fileName'] = $fileName;
         }
         $url = 'https://file.bimface.com/download/url?' . http_build_query($query);
-        return $this->http_request($url, 'GET');
+        return $this->httpRequest($url, 'GET');
 
         //{
         //  "code" : "success",
@@ -168,10 +168,10 @@ class File extends Api
      * @throws BimfaceException
      * @author fuyelk <fuyelk@fuyelk.com>
      */
-    public function delete($fileId)
+    public function delete(string $fileId)
     {
         $url = 'https://file.bimface.com/file?fileId=' . $fileId;
-        return $this->http_request($url, 'GET');
+        return $this->httpRequest($url, 'GET');
 
         //{
         //  "code" : "success",
@@ -183,12 +183,12 @@ class File extends Api
     /**
      * 获取文件上传凭证
      * @param string $name 文件的全名，使用URL编码（UTF-8），最多256个字符
-     * @param string $sourceId 调用方的文件源ID，不能重复
+     * @param string $sourceId [调用方的文件源ID，不能重复]
      * @return array|bool|string
      * @throws BimfaceException
      * @author fuyelk <fuyelk@fuyelk.com>
      */
-    public function getUploadPolicy($name, $sourceId = '')
+    public function getUploadPolicy(string $name, string $sourceId = '')
     {
         $query['name'] = urlencode($name);
 
@@ -196,7 +196,7 @@ class File extends Api
             $query['sourceId'] = $sourceId;
         }
         $url = 'https://file.bimface.com/upload/policy?' . http_build_query($query);
-        return $this->http_request($url);
+        return $this->httpRequest($url);
 
         //{
         //  "code" : "success",
@@ -215,14 +215,14 @@ class File extends Api
     }
 
     /**
-     * 将服务器文件上传至平台（建议通过前端页面实现此功能，而不是使用此接口上传）
-     * @param string $name 文件名
+     * 将服务器文件上传至平台（建议通过前端页面实现此功能，不推荐使用此接口上传）
      * @param string $filePath 文件路径
+     * @param string $name 保存文件名
      * @return array|bool|string
      * @throws BimfaceException
      * @author fuyelk <fuyelk@fuyelk.com>
      */
-    public function uploadDirect($name, $filePath)
+    public function uploadFromServer(string $filePath, string $name)
     {
         if (!is_file($filePath)) {
             throw new BimfaceException('文件不存在');
@@ -245,7 +245,7 @@ class File extends Api
             'success_action_status' => 200,
             'file' => new \CURLFile($filePath),
         ];
-        return $this->http_request($policyData['host'], 'POST', $data, 0);
+        return $this->httpRequest($policyData['host'], 'POST', $data, 0);
 
         //{
         //    "code": "success",
@@ -263,12 +263,51 @@ class File extends Api
     }
 
     /**
+     * 指定外部URL上传
+     * @param string $url 文件所在URL
+     * @param string $name 保存文件名
+     * @param string $etag [文件Etag]
+     * @param string $sourceId [调用方的文件源ID，不能重复]
+     * @return array|bool|string
+     * @throws BimfaceException
+     * @author fuyelk <fuyelk@fuyelk.com>
+     */
+    public function uploadFromUrl(string $url, string $name, string $etag = '', string $sourceId = '')
+    {
+        $query['name'] = $name;
+        if ($etag) {
+            $query['etag'] = $etag;
+        }
+        if ($sourceId) {
+            $query['sourceId'] = $sourceId;
+        }
+        $query['url'] = $url;
+
+        $url = 'https://file.bimface.com/upload?' . http_build_query($query);
+        return $this->httpRequest($url, 'PUT');
+
+        //{
+        //  "code" : "success",
+        //  "data" : {
+        //    "createTime" : "2018-11-21 18:33:44",
+        //    "etag" : "None",
+        //    "fileId" : 1938888813662976,
+        //    "length" : 6459392,
+        //    "name" : "sample.rvt",
+        //    "status" : "uploading",
+        //    "suffix" : "rvt"
+        //  },
+        //  "message" : ""
+        //}
+    }
+
+    /**
      * 发起文件转换
      * @param string $callback 接收转换成功后通知的URL
      * @param string $rootName 主文件名
      * @param bool $compressed 是否为压缩包资源
      * @param string $fileId 文件ID
-     * @param string $config 转换配置项
+     * @param string $config [转换配置项]
      * @return array|bool|string
      * @throws BimfaceException
      * @author fuyelk <fuyelk@fuyelk.com>
@@ -288,7 +327,7 @@ class File extends Api
                 'toBimtiles' => true
             ]
         ];
-        return $this->http_request($url, 'PUT', $data, 1);
+        return $this->httpRequest($url, 'PUT', $data, 1);
     }
 
     /**
@@ -301,6 +340,6 @@ class File extends Api
     public function getTranslateStatus($fileId)
     {
         $url = 'https://api.bimface.com/translate?fileId=' . $fileId;
-        return $this->http_request($url, 'GET', [], 1);
+        return $this->httpRequest($url, 'GET', [], 1);
     }
 }

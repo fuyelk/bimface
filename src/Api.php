@@ -38,7 +38,7 @@ class Api
      */
     public function __construct()
     {
-        $config = self::getCofig();
+        $config = self::getConfig();
 
         if (false === $config) {
             // 初始化配置
@@ -80,7 +80,7 @@ class Api
 
         $url = 'https://api.bimface.com/oauth2/token';
         $Authorization = sprintf('Authorization:Basic %s', base64_encode(self::$APP_KEY . ':' . self::$APP_SECRET));
-        $res = $this->http_request($url, 'POST', [], 1, [$Authorization]);
+        $res = $this->httpRequest($url, 'POST', [], 1, [$Authorization]);
 
         // 数据示例：
         //{
@@ -93,7 +93,7 @@ class Api
         //}
 
         // 更新配置
-        $config = self::getCofig();
+        $config = self::getConfig();
         $config['access_token'] = $res['data']['token'];
         $config['access_token_expire_time'] = strtotime($res['data']['expireTime']);
         self::setConfig($config);
@@ -128,7 +128,7 @@ class Api
      * @author fuyelk <fuyelk@fuyelk.com>
      * @date 2021/07/07 13:39
      */
-    protected function http_request($url, $method = 'GET', $data = [], $dataType = 1, $addHeader = [], $checkResult = true)
+    protected function httpRequest(string $url, string $method = 'GET', array $data = [], int $dataType = 1, array $addHeader = [], bool $checkResult = true)
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
@@ -189,7 +189,7 @@ class Api
      * @return bool|mixed
      * @author fuyelk <fuyelk@fuyelk.com>
      */
-    protected static function getCofig(string $name = '', string $file = '')
+    protected static function getConfig(string $name = '', string $file = '')
     {
         $file = $file ?: self::$CONFIG_PATH;
 
