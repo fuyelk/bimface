@@ -78,7 +78,7 @@ class View extends Api
 
         //{
         //  "code" : "success",
-        //  "data" : "c6eec7b8b4724da2926959b17c351622",
+        //  "data" : "abcdefghijklmn",
         //  "message" : ""
         //}
 

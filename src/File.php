@@ -54,7 +54,7 @@ class File extends Api
         //  "data" : [ {
         //    "createTime" : "2017-11-09 13:25:03",
         //    "etag" : "19349858cjs98ericu989",
-        //    "fileId" : 1938888813662976,
+        //    "fileId" : 1234567890123456,
         //    "length" : 39044,
         //    "name" : "BIMFACE示例.rvt",
         //    "status" : "success",
@@ -80,8 +80,8 @@ class File extends Api
         //  "code" : "success",
         //  "data" : {
         //    "createTime" : "2017-11-09 13:25:03",
-        //    "etag" : "19349858cjs98ericu989",
-        //    "fileId" : 1938888813662976,
+        //    "etag" : "1234567890123456789",
+        //    "fileId" : 1234567890123456,
         //    "length" : 39044,
         //    "name" : "BIMFACE示例.rvt",
         //    "status" : "success",
@@ -107,7 +107,7 @@ class File extends Api
         //  "code" : "success",
         //  "data" : {
         //    "failedReason" : "input.stream.read.error",
-        //    "fileId" : 1938888813662976,
+        //    "fileId" : 1234567890123456,
         //    "name" : "BIMFACE示例.rvt",
         //    "status" : "failure"
         //  },
@@ -201,14 +201,14 @@ class File extends Api
         //{
         //  "code" : "success",
         //  "data" : {
-        //    "accessId" : "QLYNXu7B9OTjErYR",
-        //    "callbackBody" : "eyJjYWxsYmFja0JvZHlUeXBlIjoiYXBwbGljYXRpb24veC13d3ctZm9ybS11cmxlbmNvZGVkIiwiY2FsbGJhY2tIb3N0IjoiZmlsZS5iaW1mYWNlLmNvbSIsImNhbGxiYWNrVXJsIjoiaHR0cHM6Ly8xMTYuMjI4LjE5NS4xOC9vc3MvcmVjZWl2ZSIsImNhbGxiYWNrQm9keSI6Im9iamVjdD0ke29iamVjdH0mc2l6ZT0ke3NpemV9JmV0YWc9JHtldGFnfSZuYW1lPXRlc3QucGRmJmZpbGVJZD0xNDgzMDY1NTc0NzU0NTI4JmFwcGtleT1hRGxQZjEzVXRpR3M3eXVIQ2Q4ZUhTTEhiSEpUVThTZCZzb3VyY2VJZD0mZmlsZUJ1Y2tldD1iZi1kZXYtc3JjZmlsZSJ9",
+        //    "accessId" : "abcdefghujklmn",
+        //    "callbackBody" : "abcdefghijklmnabcdefghijklmnabcdefghijklmn",
         //    "expire" : 1542792319,
-        //    "host" : "https://bf-dev-srcfile.oss-cn-shanghai.aliyuncs.com",
-        //    "objectKey" : "2f15df1c430b4ad3b0644029111b703a",
-        //    "policy" : "eyJleHBpcmF0aW9uIjoiMjAxOC0xMS0yMVQwOToyNToxOS45OTZaIiwiY29uZGl0aW9ucyI6W1siY29udGVudC1sZW5ndGgtcmFuZ2UiLDAsNTM2ODcwOTEyMF0sWyJzdGFydHMtd2l0aCIsIiRrZXkiLCIiXV19",
-        //    "signature" : "q4NrZ1By/msuHOHlgpgX56mMUhY=",
-        //    "sourceId" : "17193a84311d4be6bbd68b52a1d9d699"
+        //    "host" : "https://bf-dev-example.oss-cn-example",
+        //    "objectKey" : "abcdefghijklmnabcdefghijklmn",
+        //    "policy" : "abcdefghijklmnabcdefghijklmnabcdefghijklmnabcdefghijklmnabcdefghijklmn",
+        //    "signature" : "abcdefghijklmn/abcdefghijklmn=",
+        //    "sourceId" : "abcdefghijklmnabcdefghijklmnabcdefghijklmn"
         //  },
         //  "message" : ""
         //}
@@ -251,10 +251,10 @@ class File extends Api
         //    "code": "success",
         //    "message": null,
         //    "data": {
-        //        "fileId": 1671948932908448,
+        //        "fileId": 1234567890123456,
         //        "name": "uploadTest_20190516.rvt",
         //        "status": "success",
-        //        "etag": "85BECD325859F9F715F9FE9E4C3FBD04",
+        //        "etag": "abcdefghijklmnabcdefghijklmn",
         //        "suffix": "rvt",
         //        "length": 5124105,
         //        "createTime": "2019-08-15 14:06:21"
@@ -291,7 +291,7 @@ class File extends Api
         //  "data" : {
         //    "createTime" : "2018-11-21 18:33:44",
         //    "etag" : "None",
-        //    "fileId" : 1938888813662976,
+        //    "fileId" : 1234567890123456,
         //    "length" : 6459392,
         //    "name" : "sample.rvt",
         //    "status" : "uploading",

@@ -88,7 +88,7 @@ class Api
         //    "message": null,
         //    "data": {
         //        "expireTime": "2021-12-15 19:50:22",
-        //        "token": "cn-68912272-d224-48be-94a0-3a9ef22eafd7"
+        //        "token": "cn-abcdefghij-d224-48be-94a0-abcdefghi"
         //    }
         //}
 
